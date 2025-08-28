@@ -1,0 +1,19 @@
+backend:
+  name: github
+  repo: YOURUSER/YOURREPO
+  branch: main
+  base_url: https://YOUR-OAUTH-PROXY.DOMAIN      # from step 2
+  auth_endpoint: /oauth/authorize                 # follows the proxy’s README
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    folder: "src/content/pages"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Body",  name: "body",  widget: "markdown" }
