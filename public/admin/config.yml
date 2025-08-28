@@ -1,9 +1,9 @@
 backend:
   name: github
-  repo: YOURUSER/YOURREPO
+  repo: SpiralDJ/test_astro_site
   branch: main
-  base_url: https://YOUR-OAUTH-PROXY.DOMAIN      # from step 2
-  auth_endpoint: /oauth/authorize                 # follows the proxy’s README
+  base_url: https://decap-oauth-lime.vercel.app/api/auth
+  auth_endpoint: /api/auth
 
 media_folder: "public/uploads"
 public_folder: "/uploads"
