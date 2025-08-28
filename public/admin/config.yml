@@ -2,7 +2,7 @@ backend:
   name: github
   repo: SpiralDJ/test_astro_site
   branch: main
-  base_url: https://decap-oauth-lime.vercel.app/api/auth
+  base_url: https://decap-oauth.vercel.app/api/callback
   auth_endpoint: /api/auth
 
 media_folder: "public/uploads"
