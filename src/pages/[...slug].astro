@@ -1,17 +1,19 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+type Page = CollectionEntry<"pages">;
 
 export async function getStaticPaths() {
-  const docs = await getCollection('pages');
-  return docs.map((p) => ({
-    params: { slug: p.slug.split('/') },
+  const docs = await getCollection("pages") as Page[];
+  return docs.map((p: Page) => ({
+    params: { slug: p.slug.split("/") },
     props: { page: p },
-  }));
-}
+}))};
 
-const { page } = Astro.props;
-const { Content, data } = await page.render(); // MDX compiled here
+const { page } = Astro.props as { page: Page };
+const { Content, data } = await page.render();
 ---
 <Layout title={data.title}>
   <Content />
