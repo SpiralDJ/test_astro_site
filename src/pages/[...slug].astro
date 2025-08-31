@@ -8,9 +8,11 @@ type Page = CollectionEntry<"pages">;
 export async function getStaticPaths() {
   const docs = await getCollection("pages") as Page[];
   return docs.map((p: Page) => ({
-    params: { slug: p.slug.split("/") },
+    // pass a STRING for `[...slug]` — e.g. "about/team"
+    params: { slug: p.slug },
     props: { page: p },
-}))};
+  }));
+}
 
 const { page } = Astro.props as { page: Page };
 const { Content, data } = await page.render();
