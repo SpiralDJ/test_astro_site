@@ -1,22 +1,22 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { getCollection } from "astro:content";
-import type { CollectionEntry } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 
 type Page = CollectionEntry<"pages">;
 
+// Keep `[...slug].astro` and return a STRING for nesting (e.g. "about/team")
 export async function getStaticPaths() {
-  const docs = await getCollection("pages") as Page[];
-  return docs.map((p: Page) => ({
-    // pass a STRING for `[...slug]` — e.g. "about/team"
-    params: { slug: p.slug },
-    props: { page: p },
+  const docs = await getCollection("pages");
+  return docs.map((p) => ({
+    params: { slug: p.slug },  // string works for catch-all
+    props: { page: p as Page },
   }));
 }
 
 const { page } = Astro.props as { page: Page };
-const { Content, data } = await page.render();
+const { Content } = await page.render();   // <- no `data` here
+const title = page.data.title ?? page.slug.split("/").at(-1); // fallback just in case
 ---
-<Layout title={data.title}>
+<Layout title={title}>
   <Content />
 </Layout>
