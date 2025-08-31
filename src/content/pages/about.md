@@ -1,4 +1,4 @@
 ---
 title: About
 ---
-lorem ipsum
+
