@@ -1,5 +1,5 @@
 ---
-title: Hi/hi
+title: About
 ---
 # Welcome
 
